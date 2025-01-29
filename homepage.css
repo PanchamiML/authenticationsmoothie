@@ -1,0 +1,48 @@
+
+.signup{
+    text-decoration: none;
+}
+.signupbtn{
+    
+    border-radius: 30px;
+    border: none;
+}
+.signupbtn:hover{
+    background-color: yellow;
+}
+
+.firstnavbar{
+    background-color: rgb(220, 241, 244);
+    color: white;
+}
+.heading{
+    font-size:xx-large;
+    font-weight: 800;
+    color: black;
+
+}
+
+.smthooieimage{
+    height: 50%;
+    margin-top: 5%;
+
+}
+.text{
+    margin-left: 50px;
+    font-size: x-large;
+    font-weight: 500;
+}
+.recipebtn{
+    margin-top: 10px;
+    margin-left: 50px;
+    font-weight: 500;
+    font-size:large;
+    border-radius: 30px;
+
+}
+.recipebtn:hover{
+    background-color: orange;
+}
+.footer{
+    text-align: center;
+}

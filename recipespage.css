@@ -1,0 +1,29 @@
+.signup{
+    text-decoration: none;
+}
+.signupbtn{
+    
+    border-radius: 30px;
+    border: none;
+}
+.signupbtn:hover{
+    background-color: yellow;
+}
+
+.firstnavbar{
+    background-color: rgb(220, 241, 244);
+    color: white;
+}
+.heading{
+    font-size:xx-large;
+    font-weight: 800;
+    color: black;
+
+}
+.welcometxt{
+    color: black;
+}
+.recipeimg{
+    height: 120px;
+    width: 120px;
+}
