@@ -4,8 +4,81 @@
 </head>
 <body>
     <%- include ('partials/navbar.ejs') %>
-<h3>signup PAGE</h3>
+    <div id="signupformdetails">
+        <form id="realform" >
+            <h2>Sign Up</h2>
+            <div class="mb-3 mt-3">
+              <label for="email" class="form-label">Email:</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+              <div id="emailerror"></div>
+            </div>
+            <div class="mb-3">
+              <label for="pwd" class="form-label">Password:</label>
+              <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+              <div id="passworderror"></div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary realsignupbtn">Sign up</button>
+          </form>
+        </div>
 <%- include ('partials/footer.ejs') %>
+
+
+
+
+<script>
+    const form=document.getElementById("realform");
+    form.addEventListener("submit",async (e) => {
+        e.preventDefault();
+        const email= form.email.value;
+        const password=form.password.value;
+        const emailerror=document.getElementById("emailerror");
+        const passworderror=document.getElementById("passworderror");
+
+        emailerror.textContent = "";
+    passworderror.textContent = "";
+
+
+
+
+
+        try{
+            const res= await fetch('/signup',{
+                method:'POST',
+                body:JSON.stringify({email,password}),
+                headers:{'content-type':'application/json'}
+            })
+            const data= await res.json();
+            console.log(data)
+            if(data.errors){
+                 emailerror.textContent=data.errors.email;
+                 passworderror.textContent=data.errors.password;
+
+               
+
+            }else if (data.user){
+                location.assign('/')
+            }
+            
+
+        }catch(error){
+            console.error(error);
+        }
+
+
+
+
+
+    })
+
+
+
+
+
+
+
+
+</script>
 
 </body>
 </html>

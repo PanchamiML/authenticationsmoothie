@@ -1,14 +1,28 @@
 const User = require("../models/User")
+const jwt=require('jsonwebtoken');
 
 
-function errorHandler(err){
+const errorHandler = (err)=>{
     console.log(err.message,err.code);
 
-    if(err.code==11000){
-        err.message="This email id is already exisit"
-        return err;
+    let errors={email:"",password:""}
+
+    if(err.code===11000){
+        errors.email="This email ID already exists"
+        return errors;
     }
- return err;  
+    if(err.message.includes("users validation failed")){
+        Object.values(err.errors).forEach(({properties})=>{
+            errors[properties.path]=properties.message;
+        })
+    }
+ return errors;  
+}
+
+const actTime=5*24*60*60;
+
+const createToken=(id)=>{
+    return jwt.sign({id},'smoothie secret',{expiresIn:actTime})
 }
 
 
@@ -37,14 +51,16 @@ module.exports. signup_post= async  (req,res)=>{
     
     try {
         const user= await User.create({email,password})
+        const token=createToken(user._id);
+        res.cookie('jwt',token,{maxAge:actTime*1000})
         console.log(user)
-        res.status(200).json(user);
+        res.status(200).json({user:user._id});
     }
 
     
     catch (err){
-        const error=errorHandler(err);
-    res.status(400).json({ error: err.message });
+        const errors=errorHandler(err);
+    res.status(400).json({ errors});
 
 
     };
@@ -54,8 +70,12 @@ module.exports. signup_post= async  (req,res)=>{
     
 module.exports. login_post=(req,res)=>{
 
-        console.log(req.body)
-        res.send("newlogin")
+    const {email,password} = req.body;
+
+
+        console.log({email,password})
+        
+       
     
     }
        

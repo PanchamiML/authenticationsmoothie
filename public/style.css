@@ -74,3 +74,21 @@
     height: 120px;
     width: 120px;
 }
+#signupformdetails{
+    display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  height: 100vh; 
+}
+#realform{
+    border: solid;
+    text-align: center;
+    height: 400px;
+    width: 350px;
+}
+#emailerror{
+    color: red;
+}
+#passworderror{
+    color: red;
+}
