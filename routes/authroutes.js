@@ -1,10 +1,11 @@
 const { Router } = require("express")
 const authcontroller=require('../controllers/authcontrollers');
+const {  jwtAuthMiddleware  }=require('../middlewares/JwtAuthMiddleware')
 
 const router=Router();
 
 router.get('/',authcontroller.home_get);
-router.get('/recipes',authcontroller.recipe_get);
+router.get('/recipes',jwtAuthMiddleware,authcontroller.recipe_get);
 
 
 
@@ -21,6 +22,7 @@ router.get('/recipes',authcontroller.recipe_get);
 
 
  router.post('/signup',authcontroller.signup_post);
+ router.get('/logout',authcontroller.logout_get);
 
 
 

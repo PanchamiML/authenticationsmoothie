@@ -1,5 +1,10 @@
 .signup{
     text-decoration: none;
+    display: inline-block; /* Ensures width can be applied */
+    width: 200px; /* Adjust width as needed */
+    text-align: center; /* Centers the text inside the button */
+    padding: 10px 0; 
+
 }
 .signupbtn{
     
@@ -32,12 +37,18 @@
     font-weight: 500;
 }
 .recipebtn{
+    text-decoration: none;
     margin-top: 10px;
     margin-left: 50px;
     font-weight: 500;
     font-size:large;
-    border-radius: 30px;
-
+    border-radius: 10px;
+    background-color: palevioletred;
+    display: inline-block; /* Ensures width can be applied */
+    width: 150px; /* Adjust width as needed */
+    text-align: center; /* Centers the text inside the button */
+    padding: 10px 0; /
+   
 }
 .recipebtn:hover{
     background-color: orange;
@@ -47,13 +58,18 @@
 }
 .signup{
     text-decoration: none;
+    display: inline-block;
+    padding: 10px,20px;
+    border: solid;
+    border-radius: 5px;
+    color: black;
+    margin: 10px;
+    width: 70px;
+    border-color: azure;
+   font-weight: 700;
 }
-.signupbtn{
-    
-    border-radius: 30px;
-    border: none;
-}
-.signupbtn:hover{
+
+.signup:hover{
     background-color: yellow;
 }
 

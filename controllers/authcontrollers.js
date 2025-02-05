@@ -7,6 +7,13 @@ const errorHandler = (err)=>{
 
     let errors={email:"",password:""}
 
+    if(err.message==="Incorrect email"){
+        errors.email="This email id is not registered"
+    }
+    if(err.message==="Incorrect Password"){
+        errors.password="Incorrect password"
+    }
+
     if(err.code===11000){
         errors.email="This email ID already exists"
         return errors;
@@ -68,14 +75,32 @@ module.exports. signup_post= async  (req,res)=>{
     
     
     
-module.exports. login_post=(req,res)=>{
+module.exports. login_post=async (req,res)=>{
 
     const {email,password} = req.body;
 
 
-        console.log({email,password})
+        try {
+        const user= await User.login (email,password);
+        const token=createToken(user._id);
+        res.cookie('jwt',token,{maxAge:actTime*1000})
+        console.log(user)
+        res.status(200).json({user:user._id});
+
+        }catch(err){
+            const errors=errorHandler(err);
+            res.status(400).json({ errors});
+
+
+        }
         
        
     
     }
+    module.exports. logout_get=(req,res)=>{
+        res.cookie('jwt','',{maxAge:1})
+        res.redirect('/login');
+
+    }
+        
        

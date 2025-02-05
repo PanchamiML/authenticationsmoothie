@@ -27,6 +27,21 @@ authSchema.pre('save',async function(next){
 
 })
 
+authSchema.statics.login= async function(email,password){
+    const user=await this.findOne({email});
+    if(user){
+        const auth=await bcrypt.compare(password,user.password)
+        if(auth){
+            return user;
+        }else{
+            throw Error("Incorrect Password")
+        }
+    }else{
+        throw Error("Incorrect email")
+        
+    }
+}
+
 
 const User=mongoose.model('users',authSchema);
 module.exports=User;
